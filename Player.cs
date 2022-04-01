@@ -5,8 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private float acceleration = 3;
-
     private Rigidbody2D rigidBodyComponent;
+    private Vector2 finishPosition = Vector2.zero;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,19 +14,19 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    async void Update()
     {
-        var w = Input.GetKey(KeyCode.W) ? 1 : 0;
-        var s = Input.GetKey(KeyCode.S) ? -1 : 0;
-        var a = Input.GetKey(KeyCode.A) ? 1 : 0;
-        var d = Input.GetKey(KeyCode.D) ? -1 : 0;
-        var movementVector = new Vector2(-(a + d), w + s);
-
-        rigidBodyComponent.velocity = movementVector * acceleration;
-        if (movementVector.magnitude > Mathf.Epsilon)
+        var startPosition = rigidBodyComponent.position;
+        if(Input.GetMouseButton(0))
         {
-            var angle = new Vector3(0, 0, movementVector.GetAngle());
-            transform.rotation = Quaternion.Euler(angle);
+            finishPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            rigidBodyComponent.velocity = (finishPosition - startPosition).normalized;
+        }
+        var a = startPosition - finishPosition;
+        if(Mathf.Abs(a.x) < 0.1 
+        && Mathf.Abs(a.y) < 0.1)
+        {
+            rigidBodyComponent.velocity = Vector2.zero;
         }
     }
 }
