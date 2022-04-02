@@ -6,24 +6,34 @@ public class MainCamera : MonoBehaviour
 {
     public float minZoom;
     public float maxZoom;
+    public float mapWidth;
+    public float mapHeight;
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
+    private Vector3 UpdateCameraPosition(Vector3 direction)
+    {
+        return transform.position + direction / 25;
+    }
     // Update is called once per frame
     void Update()
     {
         var mousePosition = Input.mousePosition;
-        if(mousePosition.x < 1)
-            transform.position = transform.position + Vector3.left / 25;
-        if(mousePosition.x > Screen.width - 1)
-            transform.position = transform.position + Vector3.right / 25;
-        if(mousePosition.y < 1)
-            transform.position = transform.position + Vector3.down / 25;
-        if(mousePosition.y > Screen.height - 1)
-            transform.position = transform.position + Vector3.up / 25;
+        if(mousePosition.x < 1 
+        && transform.position.x > -mapWidth/2)
+            transform.position = UpdateCameraPosition(Vector3.left);
+        if(mousePosition.x > Screen.width - 1
+        && transform.position.x < mapWidth/2)
+            transform.position = UpdateCameraPosition(Vector3.right);
+        if(mousePosition.y < 1
+        && transform.position.y > -mapHeight/2)
+            transform.position = UpdateCameraPosition(Vector3.down);
+        if(mousePosition.y > Screen.height - 1
+        && transform.position.y < mapHeight/2)
+            transform.position = UpdateCameraPosition(Vector3.up);
 
         var scroll = Input.GetAxis("Mouse ScrollWheel");
         if(scroll != 0)
