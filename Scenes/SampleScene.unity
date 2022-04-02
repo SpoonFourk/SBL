@@ -133,9 +133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 133064972}
   - component: {fileID: 133064971}
-  - component: {fileID: 133064970}
   - component: {fileID: 133064973}
   - component: {fileID: 133064974}
+  - component: {fileID: 133064970}
   m_Layer: 0
   m_Name: Square1
   m_TagString: Untagged
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 133064969}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e0036fc91a61b64393d636e493aa80c, type: 3}
+  m_Script: {fileID: 11500000, guid: e243b374273ac7b419c035c8c4cd079b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &133064971
@@ -260,7 +260,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 180100472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e0036fc91a61b64393d636e493aa80c, type: 3}
+  m_Script: {fileID: 11500000, guid: e243b374273ac7b419c035c8c4cd079b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &180100474
@@ -339,7 +339,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -452,6 +452,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minZoom: 2
   maxZoom: 25
+  mapWidth: 100
+  mapHeight: 100
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
