@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class UnitControl : MonoBehaviour
 {
     private float acceleration = 3;
     private Rigidbody2D rigidBodyComponent;
