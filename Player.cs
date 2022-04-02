@@ -20,9 +20,9 @@ public class Player : MonoBehaviour
         if(Input.GetMouseButton(0))
         {
             finishPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            rigidBodyComponent.velocity = (finishPosition - startPosition).normalized * acceleration;
         }
-        var a = startPosition - finishPosition;
+        var a = finishPosition - startPosition;
+        rigidBodyComponent.velocity = a.normalized * acceleration;
         if(Mathf.Abs(a.x) < 0.1 
         && Mathf.Abs(a.y) < 0.1)
         {
