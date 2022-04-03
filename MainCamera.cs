@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class MainCamera : MonoBehaviour
 {
-    public float minZoom;
-    public float maxZoom;
-    public float mapWidth;
-    public float mapHeight;
+    public float minZoom, maxZoom;
+    public float mapWidth, mapHeight;
     // Start is called before the first frame update
     void Start()
     {
