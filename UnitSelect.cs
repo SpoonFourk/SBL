@@ -68,12 +68,12 @@ public class UnitSelect : MonoBehaviour
         {
             rect = new Rect();
             startPosition = Input.mousePosition;
-            Debug.Log(Input.mousePosition);
             canDraw = true;
         }
 
         if (Input.GetMouseButtonUp(1))
         {
+            curColor = clear;
             canDraw = false;
         }
 
