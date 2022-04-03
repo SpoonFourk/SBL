@@ -32,19 +32,19 @@ public class MainCamera : MonoBehaviour
         var mousePosition = Input.mousePosition;
         if(mousePosition.x < 1 
         && leftDownAngle.x > -mapWidth
-        || rightUpAngle.x > mapWidth)
+        || rightUpAngle.x - mapWidth > 0.1)
             transform.position = UpdateCameraPosition(Vector3.left);
         if(mousePosition.x > Screen.width - 1
         && rightUpAngle.x < mapWidth
-        || leftDownAngle.x < -mapWidth)
+        || leftDownAngle.x + mapWidth < 0.1)
             transform.position = UpdateCameraPosition(Vector3.right);
         if(mousePosition.y < 1
         && leftDownAngle.y > -mapHeight
-        || rightUpAngle.y > mapHeight)
+        || rightUpAngle.y - mapHeight > 0.1)
             transform.position = UpdateCameraPosition(Vector3.down);
         if(mousePosition.y > Screen.height - 1
         && rightUpAngle.y < mapHeight
-        || leftDownAngle.y < -mapHeight)
+        || leftDownAngle.y + mapHeight < 0.1)
             transform.position = UpdateCameraPosition(Vector3.up);
     }
 }
