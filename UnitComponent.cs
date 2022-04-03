@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitControl : MonoBehaviour
+public class UnitComponent : MonoBehaviour
 {
     private float acceleration = 3;
     private Rigidbody2D rigidBodyComponent;
+    public int id {get; private set; }
+    public string type {get; private set; }
+    public bool used {get;private set;}
     private Vector2 finishPosition = Vector2.zero;
     // Start is called before the first frame update
     void Start()
@@ -23,10 +26,5 @@ public class UnitControl : MonoBehaviour
         }
         var a = finishPosition - startPosition;
         rigidBodyComponent.velocity = a.normalized * acceleration;
-        if(Mathf.Abs(a.x) < 0.1 
-        && Mathf.Abs(a.y) < 0.1)
-        {
-            rigidBodyComponent.velocity = Vector2.zero;
-        }
     }
 }
