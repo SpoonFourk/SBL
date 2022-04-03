@@ -17,7 +17,7 @@ public class UnitSelect : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(1))
         {
-            startPosition = Camera.main.ScreenToWorldPoint(input.mousePosition);
+            startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
     }
 }
