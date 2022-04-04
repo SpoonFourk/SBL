@@ -18,7 +18,6 @@ public class UnitComponent : MonoBehaviour
         rigidBodyComponent = GetComponent<Rigidbody2D>();
         iconName = _type.ToString();
 		id = iconName.GetHashCode();
-        Debug.Log(this);
         UnitSelect.AddUnit(this);
     }
 
@@ -34,10 +33,9 @@ public class UnitComponent : MonoBehaviour
     // Update is called once per frame
     async void Update()
     {
-        if(!used) return;
-
         var startPosition = rigidBodyComponent.position;
-        if(Input.GetMouseButton(0))
+        if(Input.GetMouseButton(0)
+        && used)
         {
             finishPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
