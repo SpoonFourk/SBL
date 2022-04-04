@@ -22,24 +22,30 @@ public class UnitSelect : MonoBehaviour
 		get{ return _internal; }
 	}
     // Start is called before the first frame update
+    public static void AddUnit(UnitComponent comp) // добавить нового юнита
+	{
+		for(int i = 0; i < _unit.Length; i++)
+		{
+			if(_unit[i] == null)
+			{
+				_unit[i] = comp;
+				_unitCount++;
+				break;
+			}
+		}
+	}
     void Start()
     {
-        
-    }
-
-    void Awake()
-	{
-		_internal = this;
+        _internal = this;
 		_unitCount = 0;
 		_unit = new UnitComponent[maxUnits];
 		unitSelected = new List<UnitComponent>();
 		original = mainRect.color;
-        Debug.Log(mainRect.color);
 		clear = original;
 		clear.a = 0;
 		curColor = clear;
 		mainRect.color = clear;
-	}
+    }
 
     void Draw() // рисуем рамку
 	{
