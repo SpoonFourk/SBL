@@ -12,33 +12,26 @@ public class UnitSelect : MonoBehaviour
     private Color original, clear, curColor;
     private bool canDraw;
     private Sprite[] unitImage;
-	private static UnitComponent[] _unit;
+	private static UnitComponent[] units;
 	private static List<UnitComponent> unitSelected;
-	private static int _unitCount;
-	private static UnitSelect _internal;
-
-	public static UnitSelect Internal
-	{
-		get{ return _internal; }
-	}
+	private static int unitCount = 0;
     // Start is called before the first frame update
-    public static void AddUnit(UnitComponent comp) // добавить нового юнита
+    public static void AddUnit(UnitComponent comp)
 	{
-		for(int i = 0; i < _unit.Length; i++)
+		for(int i = 0; i < units.Length; i++)
 		{
-			if(_unit[i] == null)
+			if(units[i] == null)
 			{
-				_unit[i] = comp;
-				_unitCount++;
+				units[i] = comp;
+				unitCount++;
 				break;
 			}
 		}
 	}
-    void Start()
+    void Awake()
     {
-        _internal = this;
-		_unitCount = 0;
-		_unit = new UnitComponent[maxUnits];
+		unitCount = 0;
+		units = new UnitComponent[maxUnits];
 		unitSelected = new List<UnitComponent>();
 		original = mainRect.color;
 		clear = original;
@@ -47,7 +40,7 @@ public class UnitSelect : MonoBehaviour
 		mainRect.color = clear;
     }
 
-    void Draw() // рисуем рамку
+    void Draw()
 	{
 		endPosition = Input.mousePosition;
 		if(startPosition == endPosition || !canDraw) 
@@ -67,6 +60,31 @@ public class UnitSelect : MonoBehaviour
 			Mathf.Max(endPosition.y, startPosition.y) - mainRect.rectTransform.sizeDelta.y/2);
 	}
 
+	void SetSelect()
+	{
+		foreach(var unit in units)
+		{
+			if(unit != null)
+			{
+				var position = Camera.main.WorldToScreenPoint(unit.transform.position);
+				if(rect.Contains(new Vector2(position.x, Screen.height - position.y)))
+				{
+					unit.Select();
+					unitSelected.Add(unit);
+				}
+			}
+		}
+	}
+
+	void SetDeselect()
+	{
+		foreach(var unit in unitSelected)
+		{
+			unit.Deselect();
+		}
+		unitSelected = new List<UnitComponent>();
+	}
+
     // Update is called once per frame
     void Update()
     {
@@ -75,12 +93,14 @@ public class UnitSelect : MonoBehaviour
             rect = new Rect();
             startPosition = Input.mousePosition;
             canDraw = true;
+			SetDeselect();
         }
 
         if (Input.GetMouseButtonUp(1))
         {
             curColor = clear;
             canDraw = false;
+			SetSelect();
         }
 
         Draw();
