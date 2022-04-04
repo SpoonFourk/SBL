@@ -266,7 +266,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &180100472
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +345,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &180100476
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -452,8 +452,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minZoom: 2
   maxZoom: 25
-  mapWidth: 450
-  mapHeight: 150
+  mapWidth: 100
+  mapHeight: 50
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

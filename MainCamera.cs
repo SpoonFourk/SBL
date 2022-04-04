@@ -9,6 +9,7 @@ public class MainCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        var tilemap = GameObject.Find("Tilemap");
         mapWidth /= 2;
         mapHeight /= 2;
     }
@@ -46,5 +47,14 @@ public class MainCamera : MonoBehaviour
         && rightUpAngle.y < mapHeight
         || leftDownAngle.y + mapHeight < 0.1)
             transform.position = UpdateCameraPosition(Vector3.up);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(new Vector2(-mapWidth/2, mapHeight/2), new Vector2(mapWidth/2, mapHeight/2));
+        Gizmos.DrawLine(new Vector2(-mapWidth/2, -mapHeight/2), new Vector2(mapWidth/2, -mapHeight/2));
+        Gizmos.DrawLine(new Vector2(-mapWidth/2, -mapHeight/2), new Vector2(-mapWidth/2, mapHeight/2));
+        Gizmos.DrawLine(new Vector2(mapWidth/2, -mapHeight/2), new Vector2(mapWidth/2, mapHeight/2));
     }
 }

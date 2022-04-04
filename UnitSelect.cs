@@ -41,17 +41,11 @@ public class UnitSelect : MonoBehaviour
 		_unit = new UnitComponent[maxUnits];
 		unitSelected = new List<UnitComponent>();
 		original = mainRect.color;
-        Debug.Log(mainRect.color);
 		clear = original;
 		clear.a = 0;
 		curColor = clear;
 		mainRect.color = clear;
     }
-
-    void Awake()
-	{
-		
-	}
 
     void Draw() // рисуем рамку
 	{
