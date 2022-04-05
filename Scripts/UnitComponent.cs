@@ -14,10 +14,12 @@ public class UnitComponent : MonoBehaviour, IEnumerable
     public string type {get; private set; }
     private bool used;
     private Vector2 finishPosition = Vector2.zero;
+    private SpriteRenderer renderer;
     // Start is called before the first frame update
     void Start()
     {
         rigidBodyComponent = GetComponent<Rigidbody2D>();
+        renderer = GetComponent<SpriteRenderer>();
         iconName = _type.ToString();
 		id = iconName.GetHashCode();
         UnitSelect.AddUnit(this);
@@ -41,11 +43,13 @@ public class UnitComponent : MonoBehaviour, IEnumerable
     public void Deselect()
     {
         used = false;
+        renderer.material.color = Color.white;
     }
 
     public void Select()
     {
         used = true;
+        renderer.material.color = Color.green;
     }
     // Update is called once per frame
     async void Update()
