@@ -5,6 +5,7 @@ using UnityEngine;
 public class UnitComponent : MonoBehaviour
 {
     [SerializeField] private UnitType _type;
+    
     private float acceleration = 3;
     private Rigidbody2D rigidBodyComponent;
     public int id {get; private set; }
@@ -34,7 +35,7 @@ public class UnitComponent : MonoBehaviour
     async void Update()
     {
         var startPosition = rigidBodyComponent.position;
-        if(Input.GetMouseButton(0)
+        if(Input.GetMouseButtonDown(0)
         && used)
         {
             finishPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
