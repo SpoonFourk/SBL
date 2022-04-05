@@ -11,27 +11,21 @@ public class UnitSelect : MonoBehaviour
     private Vector2 startPosition, endPosition;
     private Color original, clear, curColor;
     private bool canDraw;
-    private Sprite[] unitImage;
-	private static UnitComponent[] units;
+	private static UnitComponent units;
 	private static List<UnitComponent> unitSelected;
 	private static int unitCount = 0;
     // Start is called before the first frame update
     public static void AddUnit(UnitComponent comp)
 	{
-		for(int i = 0; i < units.Length; i++)
-		{
-			if(units[i] == null)
-			{
-				units[i] = comp;
-				unitCount++;
-				break;
-			}
-		}
+		units.nextComponent = comp;
+		comp.previousComponent = units;
+		units = comp;
+		unitCount++;
 	}
     void Awake()
     {
 		unitCount = 0;
-		units = new UnitComponent[maxUnits];
+		units = new UnitComponent();
 		unitSelected = new List<UnitComponent>();
 		original = mainRect.color;
 		clear = original;
@@ -64,6 +58,7 @@ public class UnitSelect : MonoBehaviour
 	{
 		foreach(var unit in units)
 		{
+			
 			if(unit != null)
 			{
 				var position = Camera.main.WorldToScreenPoint(unit.transform.position);
@@ -88,7 +83,7 @@ public class UnitSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(1))
+        if(Input.GetMouseButtonDown(0))
         {
             rect = new Rect();
             startPosition = Input.mousePosition;
@@ -96,7 +91,7 @@ public class UnitSelect : MonoBehaviour
 			SetDeselect();
         }
 
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(0))
         {
             curColor = clear;
             canDraw = false;
