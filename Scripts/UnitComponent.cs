@@ -31,7 +31,7 @@ public class UnitComponent : MonoBehaviour
         used = true;
     }
     // Update is called once per frame
-    async void Update()
+    void Update()
     {
         var startPosition = rigidBodyComponent.position;
         if(Input.GetMouseButton(0)
