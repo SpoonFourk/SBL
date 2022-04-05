@@ -76,7 +76,7 @@ public class UnitSelect : MonoBehaviour
 		}
 	}
 
-	void SetDeselect()
+	public static void SetDeselect()
 	{
 		foreach(var unit in unitSelected)
 		{
