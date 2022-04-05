@@ -24,7 +24,6 @@ public class UnitFabrica : MonoBehaviour
         && Mathf.Abs(len.y) < 1)
         {
             unitCount--;
-            UnitSelect.SetDeselect();
             var x = GameObject.Find("PapaPotato");
             Instantiate(x, transform.position + Vector3.left, Quaternion.identity);
         }
