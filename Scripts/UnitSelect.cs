@@ -11,7 +11,6 @@ public class UnitSelect : MonoBehaviour
     private Vector2 startPosition, endPosition;
     private Color original, clear, curColor;
     private bool canDraw;
-    private Sprite[] unitImage;
 	private static UnitComponent units;
 	private static List<UnitComponent> unitSelected;
 	private static int unitCount = 0;
@@ -21,6 +20,7 @@ public class UnitSelect : MonoBehaviour
 		units.nextComponent = comp;
 		comp.previousComponent = units;
 		units = comp;
+		unitCount++;
 	}
     void Awake()
     {

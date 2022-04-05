@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class UnitComponent : MonoBehaviour, IEnumerable
 {
-    [SerializeField] private UnitType _type;
+    [SerializeField] private UnitType type;
     internal UnitComponent previousComponent;
     internal UnitComponent nextComponent;
     private float acceleration = 3;
     private Rigidbody2D rigidBodyComponent;
-    public int id {get; private set; }
-    public string iconName {get; private set; }
-    public string type {get; private set; }
     private bool used;
     private Vector2 finishPosition = Vector2.zero;
     private SpriteRenderer renderer;
@@ -20,8 +17,6 @@ public class UnitComponent : MonoBehaviour, IEnumerable
     {
         rigidBodyComponent = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
-        iconName = _type.ToString();
-		id = iconName.GetHashCode();
         UnitSelect.AddUnit(this);
     }
 
