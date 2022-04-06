@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class ResourcesFabric : MonoBehaviour
 {
-    [SerializeField] Text text;
+    [SerializeField] private Text text;
+    [SerializeField] private FabricResourceType type;
     private bool overflowed;
     [SerializeField] private int secondsWait = 5;
     [SerializeField] private int countAddAfterWait = 3;

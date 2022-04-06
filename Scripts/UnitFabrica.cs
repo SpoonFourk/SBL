@@ -7,6 +7,7 @@ public class UnitFabrica : MonoBehaviour
 {
     [SerializeField] private int unitCount = 16;
     [SerializeField] private int unitCost = 5;
+    [SerializeField] private FabricUnitType type;
     private bool a;
     // Start is called before the first frame update
     void Start()
