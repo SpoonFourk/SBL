@@ -22,7 +22,6 @@ public class ResourcesFabric : MonoBehaviour
     void Update()
     {
         var timeNow = Time.realtimeSinceStartup;
-        Debug.Log(timeNow - lastTime);
         if(timeNow - lastTime > secondsWait)
         {
             lastTime = timeNow;

@@ -64,9 +64,9 @@ public class MainCamera : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(new Vector2(leftX, rightY), new Vector2(rightX, rightY));
-        Gizmos.DrawLine(new Vector2(leftX, leftY), new Vector2(rightX, leftY));
-        Gizmos.DrawLine(new Vector2(leftX, leftY), new Vector2(leftX, rightY));
-        Gizmos.DrawLine(new Vector2(rightX, leftY), new Vector2(mapWidth/2, rightY));
+        Gizmos.DrawLine(new Vector2(-mapWidth/2, mapHeight/2), new Vector2(mapWidth/2, mapHeight/2));
+        Gizmos.DrawLine(new Vector2(-mapWidth/2, -mapHeight/2), new Vector2(mapWidth/2, -mapHeight/2));
+        Gizmos.DrawLine(new Vector2(-mapWidth/2, -mapHeight/2), new Vector2(-mapWidth/2, mapHeight/2));
+        Gizmos.DrawLine(new Vector2(mapWidth/2, -mapHeight/2), new Vector2(mapWidth/2, mapHeight/2));
     }
 }
