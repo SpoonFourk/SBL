@@ -7,7 +7,7 @@ public class MainCamera : MonoBehaviour
     [SerializeField] private float minZoom, maxZoom;
     [SerializeField] private float mapWidth, mapHeight;
     // Start is called before the first frame update
-    private float leftX, rightX, leftY, rightY;
+    internal static float leftX, rightX, leftY, rightY;
     void Start()
     {
         var tilemap = GameObject.Find("Tilemap");
