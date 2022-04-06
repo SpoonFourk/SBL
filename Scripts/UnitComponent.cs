@@ -11,7 +11,7 @@ public class UnitComponent : MonoBehaviour, IEnumerable
     private Rigidbody2D rigidBodyComponent;
     private bool used;
     private Vector2 finishPosition = Vector2.zero;
-    private SpriteRenderer renderer;
+    private new SpriteRenderer renderer;
     // Start is called before the first frame update
     void Start()
     {

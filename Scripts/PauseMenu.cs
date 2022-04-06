@@ -8,6 +8,12 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPause = false;
     public GameObject pauseMenuUI;
+    public GameObject resourses;
+
+    private void Start()
+    {
+        resourses = GameObject.Find("Resourse");
+    }
     // Update is called once per frame
     void Update()
     {
@@ -20,21 +26,29 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    private void Pause()
+    public void Pause()
     {
         pauseMenuUI.SetActive(true);
+        resourses.SetActive(false);
         Time.timeScale = 0f;
-        GameIsPause = true;
+        GameIsPause = true;  
+
     }
 
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        resourses.SetActive(true);
         Time.timeScale = 1f;
         GameIsPause = false;
     }
 
-    public void LoadMenu()
+    public void GoToSettings()
+    {
+        SceneManager.LoadScene("Settings");
+    }
+
+    public void GoToMenu()
     {
         SceneManager.LoadScene("Menu"); 
     }

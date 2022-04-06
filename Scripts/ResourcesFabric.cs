@@ -27,6 +27,6 @@ public class ResourcesFabric : MonoBehaviour
             lastTime = timeNow;
             resourcesCount ++;
         }
-        text.text = "Ресурсы: " + resourcesCount.ToString();
+        text.text = resourcesCount.ToString();
     }
 }

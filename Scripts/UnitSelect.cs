@@ -14,8 +14,8 @@ public class UnitSelect : MonoBehaviour
 	private static UnitComponent units;
 	private static List<UnitComponent> unitSelected;
 	private static int unitCount = 0;
-    // Start is called before the first frame update
-    public static void AddUnit(UnitComponent comp)
+	// Start is called before the first frame update
+	public static void AddUnit(UnitComponent comp)
 	{
 		units.nextComponent = comp;
 		comp.previousComponent = units;
@@ -80,8 +80,8 @@ public class UnitSelect : MonoBehaviour
 		unitSelected = new List<UnitComponent>();
 	}
 
-    // Update is called once per frame
-    void Update()
+	// Update is called once per frame
+	void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
