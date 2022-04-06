@@ -47,7 +47,7 @@ public class UnitComponent : MonoBehaviour, IEnumerable
         renderer.material.color = Color.green;
     }
     // Update is called once per frame
-    async void Update()
+    void Update()
     {
         var startPosition = rigidBodyComponent.position;
         if(Input.GetMouseButtonDown(1)
