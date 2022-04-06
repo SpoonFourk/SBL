@@ -11,6 +11,7 @@ public class ResourcesFabric : MonoBehaviour
     [SerializeField] private int secondsWait = 5;
     [SerializeField] private int countAddAfterWait = 3;
     private float lastTime;
+    private float deltaTime;
     public static int resourcesCount = 0;
     // Start is called before the first frame update
     void Start()
@@ -21,11 +22,17 @@ public class ResourcesFabric : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(PauseMenu.GameIsPause)
+        {
+            deltaTime = Time.realtimeSinceStartup - lastTime;
+            return;
+        }
         var timeNow = Time.realtimeSinceStartup;
-        if(timeNow - lastTime > secondsWait)
+        if(timeNow - lastTime - deltaTime > secondsWait)
         {
             lastTime = timeNow;
             resourcesCount ++;
+            Debug.Log(resourcesCount);
         }
         text.text = resourcesCount.ToString();
     }

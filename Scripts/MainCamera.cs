@@ -33,6 +33,9 @@ public class MainCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(PauseMenu.GameIsPause)
+            return;
+        
         var scroll = Input.GetAxis("Mouse ScrollWheel");
         var leftDownAngle = Camera.main.ScreenToWorldPoint(Vector2.zero);
         var rightUpAngle = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
@@ -43,10 +46,8 @@ public class MainCamera : MonoBehaviour
             maxZoom = GetComponent<Camera>().orthographicSize - (float)0.5;
 
         if(scroll != 0)
-        {
             GetComponent<Camera>().orthographicSize 
             = Mathf.Clamp(GetComponent<Camera>().orthographicSize - scroll * 5, minZoom, maxZoom);
-        }
 
         var mousePosition = Input.mousePosition;
         var direction = Vector3.zero;
