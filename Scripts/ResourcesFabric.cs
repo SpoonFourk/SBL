@@ -33,7 +33,6 @@ public class ResourcesFabric : MonoBehaviour
         {
             lastTime = timeNow;
             resourcesCount ++;
-            Debug.Log(resourcesCount);
         }
         text.text = resourcesCount.ToString();
     }
