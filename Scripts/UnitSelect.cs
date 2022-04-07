@@ -58,7 +58,6 @@ public class UnitSelect : MonoBehaviour
 	{
 		foreach(var unit in units)
 		{
-			
 			if(unit != null)
 			{
 				var position = Camera.main.WorldToScreenPoint(unit.transform.position);
