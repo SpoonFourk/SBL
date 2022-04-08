@@ -7,23 +7,32 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPause = false;
+    public static bool IsSettings = false;
     public GameObject pauseMenuUI;
     public GameObject resourses;
+    public GameObject settings;
 
     private void Start()
     {
         resourses = GameObject.Find("Resourse");
+        settings = GameObject.Find("Setting").transform.GetChild(0).gameObject;
     }
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPause)
-                Resume();
+            if (IsSettings)
+                DisableSettings();
             else
-                Pause();
+            {
+                if (GameIsPause)
+                    Resume();
+                else
+                    Pause();
+            }
         }
+           
     }
 
     public void Pause()
@@ -43,10 +52,20 @@ public class PauseMenu : MonoBehaviour
         GameIsPause = false;
     }
 
-    public void GoToSettings()
+    public void ActiveSettings()
     {
-        SceneManager.LoadScene("Settings");
+        pauseMenuUI.SetActive(false);
+        IsSettings = true;
+        settings.SetActive(IsSettings);
     }
+
+    public void DisableSettings()
+    {
+        pauseMenuUI.SetActive(true);
+        IsSettings = false;
+        settings.SetActive(IsSettings);
+    }
+
 
     public void GoToMenu()
     {
