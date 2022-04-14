@@ -44,6 +44,12 @@ public class UnitComponent : MonoBehaviour, IEnumerable
         }
     }
 
+    public void DestroyUnit()
+    {
+        previousComponent.nextComponent = nextComponent;
+        nextComponent.previousComponent = previousComponent;
+    }
+
     void Start()
     {
         rigidBodyComponent = GetComponent<Rigidbody2D>();
