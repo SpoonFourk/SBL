@@ -5,6 +5,7 @@ using UnityEngine;
 public class UnitComponent : MonoBehaviour, IEnumerable
 {
     [SerializeField] private UnitType type;
+    [SerializeField] public int PlayerIndex;
     internal UnitComponent previousComponent;
     internal UnitComponent nextComponent;
     private float acceleration = 3;
@@ -13,10 +14,42 @@ public class UnitComponent : MonoBehaviour, IEnumerable
     private Vector2 finishPosition = Vector2.zero;
     private new SpriteRenderer renderer;
     // Start is called before the first frame update
+    public float MaxHealth;
+    public float DamageForceThreshold = 1f;
+    public float DamageForceScale = 5f;
+
+    public float CurrentHealth { get; private set; }
+    private Vector2[] moweDirection = new Vector2[] 
+    { 
+        Vector2.up,
+        Vector2.down,
+        Vector2.left,
+        Vector2.right
+    };
+
+    void OnCollisionEnter2D(Collision2D other) 
+    {
+        // Collision would usually be on another component, putting it all here for simplicity
+        if(other.gameObject.name.IndexOf("PapaPotato") != -1
+        && gameObject.name.IndexOf("PapaPotato") == -1
+        ||other.gameObject.name.IndexOf("Evil") != -1
+        && gameObject.name.IndexOf("Evil") == -1)
+        {
+            var force = other.relativeVelocity.magnitude;
+            rigidBodyComponent.velocity = rigidBodyComponent.velocity - 100 * other.relativeVelocity;
+            if (force > DamageForceThreshold) 
+            {
+                CurrentHealth -= (int)((force - DamageForceThreshold) * DamageForceScale);
+                CurrentHealth = Mathf.Max(0, CurrentHealth);
+            }
+        }
+    }
+
     void Start()
     {
         rigidBodyComponent = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
+        CurrentHealth = MaxHealth - 20;
         UnitSelect.AddUnit(this);
     }
 
