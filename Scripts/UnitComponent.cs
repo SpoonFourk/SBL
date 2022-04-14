@@ -49,7 +49,7 @@ public class UnitComponent : MonoBehaviour, IEnumerable
     {
         rigidBodyComponent = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
-        CurrentHealth = MaxHealth - 20;
+        CurrentHealth = MaxHealth;
         UnitSelect.AddUnit(this);
     }
 
