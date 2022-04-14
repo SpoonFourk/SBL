@@ -94,7 +94,16 @@ public class UnitComponent : MonoBehaviour, IEnumerable
         {
             finishPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
+ 
         var a = finishPosition - startPosition;
+
+        //Переворачивает спрайт по оси X
+        if (a.x < 0)
+            renderer.flipX = false;
+        else
+            renderer.flipX = true;
+
+
         if(a.magnitude < 0.1
         || finishPosition == Vector2.zero)
         {
