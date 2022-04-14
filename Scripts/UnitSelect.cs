@@ -11,7 +11,7 @@ public class UnitSelect : MonoBehaviour
     private Vector2 startPosition, endPosition;
     private Color original, clear, curColor;
     private bool canDraw;
-	private static UnitComponent units;
+	public static UnitComponent units;
 	private static List<UnitComponent> unitSelected;
 	private static int unitCount = 0;
 	// Start is called before the first frame update
@@ -96,6 +96,11 @@ public class UnitSelect : MonoBehaviour
             canDraw = false;
 			SetSelect();
         }
+
+		if(Input.GetMouseButton(1))
+			foreach (var unit in unitSelected)
+				unit.finishPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		
 
         Draw();
 

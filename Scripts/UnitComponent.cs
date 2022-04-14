@@ -11,14 +11,13 @@ public class UnitComponent : MonoBehaviour, IEnumerable
     private float acceleration = 3;
     private Rigidbody2D rigidBodyComponent;
     private bool used;
-    private Vector2 finishPosition = Vector2.zero;
+    public Vector2 finishPosition = Vector2.zero;
     private new SpriteRenderer renderer;
     // Start is called before the first frame update
-    public float MaxHealth;
+    [SerializeField] public float MaxHealth;
+    public float CurrentHealth { get; private set; }
     public float DamageForceThreshold = 1f;
     public float DamageForceScale = 5f;
-
-    public float CurrentHealth { get; private set; }
     private Vector2[] moweDirection = new Vector2[] 
     { 
         Vector2.up,
@@ -50,7 +49,10 @@ public class UnitComponent : MonoBehaviour, IEnumerable
         rigidBodyComponent = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
         CurrentHealth = MaxHealth;
-        UnitSelect.AddUnit(this);
+        if(PlayerIndex == 0)
+            UnitSelect.AddUnit(this);
+        else
+            EvilBrain.AddUnit(this);
     }
 
     public IEnumerator<UnitComponent> GetEnumerator()
@@ -89,11 +91,7 @@ public class UnitComponent : MonoBehaviour, IEnumerable
             Mathf.Clamp(transform.position.y, MainCamera.leftY + 1, MainCamera.rightY - 1),
             transform.position.z
         );
-        if(Input.GetMouseButtonDown(1)
-        && used)
-        {
-            finishPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        }
+
         var a = finishPosition - startPosition;
         if(a.magnitude < 0.1
         || finishPosition == Vector2.zero)
